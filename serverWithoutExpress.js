@@ -15,7 +15,7 @@ app.post("/signup", createUser); // 첫번째 인자에는 endpoint url 을 기�
 app.post("/write", createPost);
 app.post("/login", (req, res) => {
   res.json("login success");
-}); // 각각의 요청에 대해 핸들링 하는 함수를 두번째 인자로 넣습니다.
+}); // 각각의 요청에 대해 핸들링 하는 함수를 두번째 인자로 넣습니다
 
 const server = http.createServer(app);
 
