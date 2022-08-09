@@ -52,7 +52,7 @@ const createPost = (req, res) => {
     content: post.content,
     userId: post.userId,
   });
-  res.json({ message: "POST_CREATED" });
+  res.json({ message: "POST_CREATED2" });
 };
 
 module.exports = { createUser, createPost }; //  모듈로 내보냅니다.
