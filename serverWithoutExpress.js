@@ -3,16 +3,20 @@ const http = require("http");
 const express = require("express");
 const { createUser } = require("./app");
 const { createPost } = require("./app");
-
+const { getPosts } = require("./app");
 const app = express();
 app.use(express.json());
 
 app.get("/ping", (req, res) => {
-  res.json({ message: "/ pong" });
+  res.json({ message: "/pong" });
 });
 
 app.post("/signup", createUser); // 첫번째 인자에는 endpoint url 을 기입하고,
 app.post("/write", createPost);
+app.get("/getPosts", (req, res) => {
+  res.json({ posts: getPosts() });
+});
+
 app.post("/login", (req, res) => {
   res.json("login success");
 }); // 각각의 요청에 대해 핸들링 하는 함수를 두번째 인자로 넣습니다
@@ -42,4 +46,36 @@ server.listen(8000, () => {});
 
 // server.listen(8000, () => {
 //   console.log("server is running on PORT 8000");
+// });
+
+// app.get("/posts", (req, res) => {
+//   // let newPosts = posts;
+//   // newPosts = newPosts.map((posts) => {
+//   //   posts.userId;
+//   //   const user = user.find((user) => posts.userId === user.id);
+
+//   //   return {
+//   //     ...posts,
+//   //     userName: user.userName,
+//   //   };
+//   // });
+//   res.json({ data: posts });
+// });
+
+// app.patch("/post", (req, res) => {
+//   const { id, content } = req.body;
+//   let newPosts = post;
+
+//   const post = post.find((post) => post.id === id);
+//   post.content = content;
+//   const user = user.find((user) => post.userId === user.id);
+
+//   const newposts = {
+//     postId: post.id,
+//     PostTitle: post.PostTitle,
+//     postContent: post.postContent,
+//     userId: post.userId,
+//     userName: post.userName,
+//   };
+//   res.json({ data: {} });
 // });
