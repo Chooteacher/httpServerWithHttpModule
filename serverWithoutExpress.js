@@ -4,6 +4,7 @@ const express = require("express");
 const { createUser } = require("./app");
 const { createPost } = require("./app");
 const { getPosts } = require("./app");
+const { editPost } = require("./app");
 const app = express();
 app.use(express.json());
 
@@ -13,9 +14,9 @@ app.get("/ping", (req, res) => {
 
 app.post("/signup", createUser); // 첫번째 인자에는 endpoint url 을 기입하고,
 app.post("/write", createPost);
-app.get("/getPosts", (req, res) => {
-  res.json({ posts: getPosts() });
-});
+app.get("/getPosts", getPosts);
+
+app.patch("/edit", editPost);
 
 app.post("/login", (req, res) => {
   res.json("login success");
