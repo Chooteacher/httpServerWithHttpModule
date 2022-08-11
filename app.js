@@ -34,7 +34,7 @@ const datas = [
     userName: "LeeEunJi",
     postingId: 1,
     postingTitle: "으아아악",
-    postingContent: "너무 더워",
+    postingContent: "노드",
   },
   {
     userId: 2,
@@ -58,24 +58,7 @@ const datas = [
     postingContent: "sampleContent4",
   },
 ];
-
-const getPosts = (req, res) => {
-  return datas;
-};
-
-// const inquireData = (req, res) => {
-//   const data = req.query.data;
-
-//   datas.push({
-//     userId: data.userId,
-//     userName: data.userName,
-//     postingId: data.postingId,
-//     postingTitle: data.postingTitle,
-//     postingImageTitle: data.postingImageTitle,
-//     postingContent: data.postingContent,
-//   });
-// };
-
+// 회원가입
 const createUser = (req, res) => {
   const user = req.body.data; // 프론트에서 받아온 정보를 가져옵니다.
 
@@ -90,7 +73,7 @@ const createUser = (req, res) => {
   // express 덕분에 JSON.stringify 함수를 사용할 필요없이
   // response 객체의 json 메소드를 활용합니다.
 };
-
+// 게시글 생성
 const createPost = (req, res) => {
   const post = req.body.data;
 
@@ -103,14 +86,33 @@ const createPost = (req, res) => {
   res.json({ message: "POST_CREATED" });
 };
 
-module.exports = { createUser, createPost, getPosts }; //  모듈로 내보냅니다.
+// 게시글 조회
+const getPosts = (req, res) => {
+  res.json({ data: datas });
+};
 
-// {
-// 	"data" : {
-// 		"userId"           : 1,
-// 	  "userName"         : "Rebekah Johnson"
-//     "postingId"        : 1,
-//     "postingTitle"     : "간단한 HTTP API 개발 시작!",
-// 		"postingContent"   : "노드"
-// 	}
-// }
+const editPost = (req, res) => {
+  datas.forEach((el) => {
+    if (el.postingId === req.body.data.postingId) {
+      el.postingContent = req.body.data.postingContent;
+      res.json({ data: el });
+      return;
+    }
+    res.json({ message: "존재하지 않습니다." });
+  });
+};
+
+module.exports = { createUser, createPost, getPosts, editPost }; //  모듈로 내보냅니다.
+
+// const inquireData = (req, res) => {
+//   const data = req.query.data;
+
+//   datas.push({
+//     userId: data.userId,
+//     userName: data.userName,
+//     postingId: data.postingId,
+//     postingTitle: data.postingTitle,
+//     postingImageTitle: data.postingImageTitle,
+//     postingContent: data.postingContent,
+//   });
+// };
