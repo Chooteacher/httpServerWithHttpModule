@@ -91,6 +91,7 @@ const getPosts = (req, res) => {
   res.json({ data: datas });
 };
 
+// 게시글 수정
 const editPost = (req, res) => {
   datas.forEach((el) => {
     if (el.postingId === req.body.data.postingId) {
@@ -102,7 +103,13 @@ const editPost = (req, res) => {
   });
 };
 
-module.exports = { createUser, createPost, getPosts, editPost }; //  모듈로 내보냅니다.
+// 게시글 삭제
+const deletePost = (req, res) => {
+  posts.splice(0, posts.length);
+  res.json({ message: "postingDeleted" });
+};
+
+module.exports = { createUser, createPost, getPosts, editPost, deletePost }; //  모듈로 내보냅니다.
 
 // const inquireData = (req, res) => {
 //   const data = req.query.data;
