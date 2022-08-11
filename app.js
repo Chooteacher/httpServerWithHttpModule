@@ -28,6 +28,54 @@ const posts = [
   },
 ];
 
+const datas = [
+  {
+    userId: 1,
+    userName: "LeeEunJi",
+    postingId: 1,
+    postingTitle: "으아아악",
+    postingContent: "너무 더워",
+  },
+  {
+    userId: 2,
+    userName: "KimCode",
+    postingId: 2,
+    postingTitle: "여름좋아",
+    postingContent: "좋지만 더워..",
+  },
+  {
+    userId: 3,
+    userName: "new user 1",
+    postingId: 3,
+    postingImageTitle: "내용 1",
+    postingContent: "sampleContent3",
+  },
+  {
+    userId: 4,
+    userName: "new user 2",
+    postingId: 4,
+    postingImageTitle: "내용 2",
+    postingContent: "sampleContent4",
+  },
+];
+
+const getPosts = (req, res) => {
+  return datas;
+};
+
+// const inquireData = (req, res) => {
+//   const data = req.query.data;
+
+//   datas.push({
+//     userId: data.userId,
+//     userName: data.userName,
+//     postingId: data.postingId,
+//     postingTitle: data.postingTitle,
+//     postingImageTitle: data.postingImageTitle,
+//     postingContent: data.postingContent,
+//   });
+// };
+
 const createUser = (req, res) => {
   const user = req.body.data; // 프론트에서 받아온 정보를 가져옵니다.
 
@@ -55,4 +103,14 @@ const createPost = (req, res) => {
   res.json({ message: "POST_CREATED" });
 };
 
-module.exports = { createUser, createPost }; //  모듈로 내보냅니다.
+module.exports = { createUser, createPost, getPosts }; //  모듈로 내보냅니다.
+
+// {
+// 	"data" : {
+// 		"userId"           : 1,
+// 	  "userName"         : "Rebekah Johnson"
+//     "postingId"        : 1,
+//     "postingTitle"     : "간단한 HTTP API 개발 시작!",
+// 		"postingContent"   : "노드"
+// 	}
+// }
